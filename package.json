@@ -4,6 +4,9 @@
   "version": "0.0.0",
   "type": "module",
   "homepage": "https://mohammedalhaq.github.io/eisenhower-matrix",
+  "engines": {
+    "node": ">=20.19.0"
+  },
   "scripts": {
     "preview": "vite preview",
     "predeploy": "npm run build",
