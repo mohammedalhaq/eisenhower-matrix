@@ -267,7 +267,7 @@ function App() {
                   <div className="quadrant-actions">
                     <b>{quadrantTasks.length}</b>
                     <button className="quadrant-add" type="button" onClick={() => setModalQuadrant(quadrant.id)} aria-label={`Add task to ${quadrant.title}`}>
-                      +
+                      <span aria-hidden="true" />
                     </button>
                   </div>
                 </div>
