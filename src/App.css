@@ -72,20 +72,20 @@ h1 em { color: var(--accent); font-style: normal; font-weight: 700; }
 .axis-x-not-urgent { grid-column: 2; grid-row: 1; }
 .matrix { grid-column: 1 / -1; grid-row: 2; display: grid; grid-template-columns: 1fr 1fr; border: 1px solid var(--soft-line); border-radius: 8px; overflow: hidden; }
 .quadrant { min-height: 460px; padding: 32px; border-right: 1px solid var(--soft-line); border-bottom: 1px solid var(--soft-line); background: var(--surface); }
-.quadrant-do { background: #ffebe8; }
-.quadrant-schedule { background: #fff4cf; }
-.quadrant-delegate { background: #e3f0ff; }
-.quadrant-delete { background: #f1e8ff; }
+.quadrant-do { --quadrant-action: #f45d48; --quadrant-action-soft: #ffd3cc; background: #ffebe8; }
+.quadrant-schedule { --quadrant-action: #c58a00; --quadrant-action-soft: #ffe49a; background: #fff4cf; }
+.quadrant-delegate { --quadrant-action: #2f74c8; --quadrant-action-soft: #bddcff; background: #e3f0ff; }
+.quadrant-delete { --quadrant-action: #7b55cf; --quadrant-action-soft: #d9c7ff; background: #f1e8ff; }
 .quadrant.drag-over { box-shadow: inset 0 0 0 3px var(--accent); }
 .quadrant-heading { display: grid; grid-template-columns: 1fr auto; align-items: start; }
 .quadrant-heading p { margin: 0 0 5px; color: var(--muted); text-transform: uppercase; letter-spacing: .1em; font-size: 10px; }
 .quadrant-heading h2 { margin: 0; font-family: inherit; font-size: 30px; font-weight: 650; letter-spacing: -.03em; }
-.quadrant-heading b { border: 1px solid var(--line); border-radius: 4px; min-width: 30px; height: 30px; display: grid; place-items: center; font-size: 11px; font-weight: 400; }
+.quadrant-heading b { border: 1px solid var(--quadrant-action); border-radius: 4px; min-width: 30px; height: 30px; display: grid; place-items: center; background: var(--quadrant-action-soft); color: var(--ink); font-size: 11px; font-weight: 700; }
 .quadrant-actions { display: flex; align-items: center; gap: 8px; }
 .quadrant-description { margin: 11px 0 28px; color: var(--muted); font-size: 13px; }
 
-.quadrant-add { width: 30px; height: 30px; border: 1px solid var(--line); border-radius: 5px; background: transparent; color: var(--muted); font-size: 18px; line-height: 1; }
-.quadrant-add:hover, .quadrant-add:focus { border-color: var(--accent); color: var(--accent); }
+.quadrant-add { width: 30px; height: 30px; border: 1px solid var(--quadrant-action); border-radius: 5px; background: var(--quadrant-action-soft); color: var(--quadrant-action); font-size: 18px; font-weight: 700; line-height: 1; }
+.quadrant-add:hover, .quadrant-add:focus { background: var(--quadrant-action); color: var(--surface); }
 
 .task-list { list-style: none; margin: 0; padding: 0; border-top: 1px solid var(--line); }
 .task-list li { min-height: 54px; display: grid; grid-template-columns: 34px 42px 1fr 92px 54px; align-items: center; gap: 8px; border-bottom: 1px solid var(--line); }

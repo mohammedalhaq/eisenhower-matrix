@@ -103,6 +103,8 @@ function QuadrantDropZone({ id, className, children }: { id: QuadrantId, classNa
 }
 
 function readTasks(): Task[] {
+  if (typeof window === 'undefined') return []
+
   try {
     const stored = localStorage.getItem(STORAGE_KEY)
     return stored ? JSON.parse(stored) : []
@@ -112,7 +114,7 @@ function readTasks(): Task[] {
 }
 
 function App() {
-  const [tasks, setTasks] = useState<Task[]>(readTasks)
+  const [tasks, setTasks] = useState<Task[]>([])
   const [taskText, setTaskText] = useState('')
   const [selectedQuadrant, setSelectedQuadrant] = useState<QuadrantId>('do')
   const [modalQuadrant, setModalQuadrant] = useState<QuadrantId | null>(null)
@@ -120,6 +122,7 @@ function App() {
   const [modalTaskText, setModalTaskText] = useState('')
   const [editingId, setEditingId] = useState<string | null>(null)
   const [editingText, setEditingText] = useState('')
+  const [tasksLoaded, setTasksLoaded] = useState(false)
   const inputRef = useRef<HTMLInputElement>(null)
   const sensors = useSensors(
     useSensor(PointerSensor, { activationConstraint: { distance: 6 } }),
@@ -128,8 +131,25 @@ function App() {
   )
 
   useEffect(() => {
+    let cancelled = false
+
+    queueMicrotask(() => {
+      if (cancelled) return
+
+      setTasks(readTasks())
+      setTasksLoaded(true)
+    })
+
+    return () => {
+      cancelled = true
+    }
+  }, [])
+
+  useEffect(() => {
+    if (!tasksLoaded) return
+
     localStorage.setItem(STORAGE_KEY, JSON.stringify(tasks))
-  }, [tasks])
+  }, [tasks, tasksLoaded])
 
   function addTask(event: FormEvent) {
     event.preventDefault()

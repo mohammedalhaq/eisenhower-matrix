@@ -11,7 +11,7 @@
     "preview": "vite preview",
     "predeploy": "npm run build",
     "deploy": "gh-pages -d dist",
-    "build": "tsc -b && vite build",
+    "build": "tsc -b && vite build && vite build --ssr src/entry-server.tsx --outDir node_modules/.tmp/eisenhower-ssr --emptyOutDir true && node scripts/prerender.mjs",
     "dev": "vite",
     "lint": "eslint ."
   },
